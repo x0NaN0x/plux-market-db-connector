@@ -1,8 +1,7 @@
 const VENDING_LOG_EXISTS = `
-SELECT COUNT(*)
-  FROM information_schema.tables 
-  WHERE table_schema = ? 
-    AND table_name = 'vending_log';
+SELECT 1 
+  FROM vending_log 
+  LIMIT 1;
 `;
 
 export const settingsQueries = {
