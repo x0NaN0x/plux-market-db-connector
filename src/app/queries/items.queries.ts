@@ -1,5 +1,8 @@
 // NOTE: This query returns all of the items
 // Remember that we filter unique with highest vending_id
+
+import { env } from "@/env";
+
 // This would remove results from the query.
 const ITEM_SEARCH_DB = `
 SELECT id, name_english, type 
@@ -92,6 +95,7 @@ FROM (
     LEFT JOIN item_db ON cart_inventory.nameid = item_db.id
     LEFT JOIN \`char\` AS c ON cart_inventory.char_id = c.char_id
     WHERE c.char_id IS NOT NULL
+    ${env.DEMO_MODE ? "" : "AND c.online > 0"}
     GROUP BY vending_items.vending_id
     ORDER BY RAND() 
     LIMIT 100

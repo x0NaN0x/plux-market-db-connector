@@ -1,3 +1,5 @@
+import { env } from "@/env";
+
 const SELLER_STORE = `
 SELECT 
   c.char_id, 
@@ -48,6 +50,7 @@ LEFT JOIN item_db AS idb_card1 ON ci.card1 = idb_card1.id
 LEFT JOIN item_db AS idb_card2 ON ci.card2 = idb_card2.id
 LEFT JOIN item_db AS idb_card3 ON ci.card3 = idb_card3.id
 WHERE vi.vending_id = ?
+${env.DEMO_MODE ? "" : "AND c.online > 0"}
 GROUP BY vi.cartinventory_id;
 `;
 
@@ -104,12 +107,14 @@ LEFT JOIN item_db AS idb_card1 ON ci.card1 = idb_card1.id
 LEFT JOIN item_db AS idb_card2 ON ci.card2 = idb_card2.id
 LEFT JOIN item_db AS idb_card3 ON ci.card3 = idb_card3.id
 WHERE idb.name_english LIKE CONCAT('%', ?, '%') OR idb.id = ?
+${env.DEMO_MODE ? "" : "AND c.online > 0"}
 GROUP BY vi.cartinventory_id;
 `;
 
 const MARKET_GET_ALL_SELLING_ITEMS = `
 SELECT 
   c.char_id, 
+  c.online,
   vi.vending_id, 
   vi.cartinventory_id, 
   ci.amount, 
@@ -156,6 +161,7 @@ LEFT JOIN item_db AS idb_card0 ON ci.card0 = idb_card0.id
 LEFT JOIN item_db AS idb_card1 ON ci.card1 = idb_card1.id
 LEFT JOIN item_db AS idb_card2 ON ci.card2 = idb_card2.id
 LEFT JOIN item_db AS idb_card3 ON ci.card3 = idb_card3.id
+${env.DEMO_MODE ? "" : "WHERE c.online > 0"}
 GROUP BY vi.cartinventory_id;
 `;
 

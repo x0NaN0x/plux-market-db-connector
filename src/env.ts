@@ -13,6 +13,13 @@ export const env = createEnv({
     MYSQL_USER: z.string().min(1),
     MYSQL_PASSWORD: z.string().min(1),
     API_SECRET_TOKEN: z.string().min(1),
+    DEMO_MODE: z
+      .boolean()
+      .optional()
+      .default(false)
+      .describe(
+        "Will show results of players that are offline, this is only used for demo purposes"
+      ),
   },
   /*
    * Environment variables available on the client (and server).
@@ -33,5 +40,6 @@ export const env = createEnv({
     MYSQL_USER: process.env.MYSQL_USER,
     MYSQL_PASSWORD: process.env.MYSQL_PASSWORD,
     API_SECRET_TOKEN: process.env.API_SECRET_TOKEN,
+    DEMO_MODE: process.env.DEMO_MODE === "true" ? true : false,
   },
 });
