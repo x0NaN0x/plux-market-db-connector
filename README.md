@@ -88,5 +88,5 @@ FLUSH PRIVILEGES;
 
 <!-- LINK GROUP -->
 
-[website-link]: https://market.plux.dev
-[image-banner]: https://market.plux.dev/images/og-image.png
+[website-link]: https://plux.dev
+[image-banner]: https://plux.dev/images/db-connector-image.png
