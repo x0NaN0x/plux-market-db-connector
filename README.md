@@ -19,11 +19,7 @@ The Plux Market DB Connector is a serverless API built in Next.Js that connects 
 
 ## Getting started
 
-1. One-click deploy to Vercel
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fx0NaN0x%2Fplux-market-db-connector&env=MYSQL_HOST,MYSQL_PORT,MYSQL_DATABASE,MYSQL_USER,MYSQL_PASSWORD,API_SECRET_TOKEN)
-
-2. (Recommended) Create a MySQL user specifically for this connector with READ only permissions on the following tables. To do that, follow the commands below:
+1. (Recommended) Start by creating a MySQL user specifically for this connector with READ only permissions on the following tables. To do that, follow the commands below:
 
 - Change `databaseName` to your database name.
 - Change `strongPassword` to a strong password.
@@ -47,11 +43,22 @@ FLUSH PRIVILEGES;
 
 ```
 
+2. One-click deploy to Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fx0NaN0x%2Fplux-market-db-connector&env=MYSQL_HOST,MYSQL_PORT,MYSQL_DATABASE,MYSQL_USER,MYSQL_PASSWORD,API_SECRET_TOKEN)
+
 3. Fill in the environmental variables needed in Vercel for the application to work.
 
-- Share both the `API_SECRET_TOKEN` and the `URL` of this deployment with the Plux Market Web Application to authenticate the requests.
+- MYSQL_HOST
+- MYSQL_PORT
+- MYSQL_DATABASE
+- MYSQL_USER (the new user you just made in step 1)
+- MYSQL_PASSWORD (the password you added to that user)
+- API_SECRET_TOKEN (this is basically any secret value you would like to have. Think of this as a very strong password)
 
 4. Done! The api endpoint should be available at `https://[url]/api/executeQuery`.
+
+- Share both the `API_SECRET_TOKEN` and the `URL` of this deployment with the Plux Market Web Application to authenticate the requests.
 
 ## Plux Market Features
 
