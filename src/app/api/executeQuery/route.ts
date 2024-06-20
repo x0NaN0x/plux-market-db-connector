@@ -1,4 +1,5 @@
-import { executeQuery } from "@/app/lib/mysqlClient";
+import { getMySqlErrorCode } from "@/app/lib/getMySqlErrorCode";
+import { executeQuery, MySqlError } from "@/app/lib/mysqlClient";
 import { queryToken } from "@/app/queries";
 import { queriesSchema } from "@/app/queries/queries.schema";
 import { env } from "@/env";
@@ -37,7 +38,19 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json({ data }, { status: 200 });
-  } catch (error) {
-    return NextResponse.json({ error }, { status: 500 });
+  } catch (e) {
+    const code = getMySqlErrorCode(e);
+    // Print the error to the console for debugging purposes
+    console.error(e);
+
+    return NextResponse.json(
+      {
+        // Return the error code to help debug the issue
+        error: {
+          code,
+        },
+      },
+      { status: 500 }
+    );
   }
 }

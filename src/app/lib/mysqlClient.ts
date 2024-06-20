@@ -1,6 +1,10 @@
 import { env } from "@/env";
 import mysql from "serverless-mysql";
 
+export interface MySqlError {
+  message: string;
+}
+
 const config = {
   host: env.MYSQL_HOST,
   port: env.MYSQL_PORT,
@@ -26,6 +30,6 @@ export async function executeQuery({
     await db.end();
     return results;
   } catch (error) {
-    return { error };
+    throw error;
   }
 }
