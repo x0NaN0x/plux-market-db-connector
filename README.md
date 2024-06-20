@@ -60,6 +60,22 @@ FLUSH PRIVILEGES;
 
 - Share both the `API_SECRET_TOKEN` and the `URL` of this deployment with the Plux Market Web Application to authenticate the requests.
 
+## Deploying with Docker
+
+Pre-built image will be available at Docker Hub soon. For now you can build and deploy the image yourself.
+
+1. You can build the Dockerimage by running the following command in the root directory of the project:
+
+```bash
+docker build -t plux-market-db-connector .
+```
+
+2. If you want to run the container, you can do so by running the following command:
+
+```bash
+docker run -p 3000:3000 -e MYSQL_HOST=your_host -e MYSQL_PORT=3306 -e MYSQL_DATABASE=your_database -e MYSQL_USER=your_user -e MYSQL_PASSWORD=your_password -e API_SECRET_TOKEN=your_secret_token plux-market-db-connector
+```
+
 ## Plux Market Features
 
 ### General Features

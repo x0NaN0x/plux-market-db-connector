@@ -42,4 +42,5 @@ export const env = createEnv({
     API_SECRET_TOKEN: process.env.API_SECRET_TOKEN,
     DEMO_MODE: process.env.DEMO_MODE === "true" ? true : false,
   },
+  skipValidation: process.env.SKIP_ENV_VALIDATIONS === "true",
 });
