@@ -5,6 +5,7 @@ import { queriesSchema } from "@/app/queries/queries.schema";
 import { env } from "@/env";
 import { NextRequest, NextResponse } from "next/server";
 
+export const maxDuration = 60;
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
